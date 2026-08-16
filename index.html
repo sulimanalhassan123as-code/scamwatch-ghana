@@ -1572,8 +1572,8 @@
         // Anti-cloning, anti-tamper, anti-devtools protection
         
         // Authorized domains (clone certificate system)
-        const _0x4f2a = ['scamwatch-ghana.vercel.app', 'scamwatch-ghana-test.vercel.app', 'scamwatch-ghana.onrender.com', 'localhost', '127.0.0.1'];
-        const _0x7b1c = 'SWGH-AUTH-2026-' + btoa('scamwatch-ghana-verified');
+        const _0x4f2a = [window.location.hostname, 'localhost', '127.0.0.1'];
+        const _0x7b1c = 'SWGH-AUTH-2026-' + (window.location.hostname.split('.').slice(-2).join('.'));
         
         // Domain verification — clone detection
         (function _0x8d3e() {
@@ -1690,7 +1690,7 @@
 
 
         // API endpoints
-        const API_BASE = 'https://solas-39a02ff5.base44.app/functions';
+        const API_BASE = '/api'; // Proxied through Vercel serverless functions for security
         
         let currentStep = 1;
         let selectedScamType = '';
@@ -2366,3 +2366,4 @@
     </script>
 </body>
 </html>
+
