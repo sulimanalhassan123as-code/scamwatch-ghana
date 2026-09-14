@@ -11,8 +11,19 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  // Extract endpoint from query params (Vercel catch-all route)
-  const endpoint = req.query.endpoint ? req.query.endpoint.join('/') : '';
+  // Extract endpoint from the request path (works on all Vercel build paths)
+  // Some build paths do not inject the [...endpoint] query param, so parse req.url.
+  let rawUrl = req.url || '';
+  let pathOnly = rawUrl.split('?')[0];
+  let endpoint = '';
+  if (pathOnly.startsWith('/api/')) {
+    endpoint = pathOnly.slice(5);
+  } else if (pathOnly.startsWith('/') && pathOnly.length > 1) {
+    endpoint = pathOnly.slice(1);
+  }
+  if (!endpoint && req.query.endpoint) {
+    endpoint = Array.isArray(req.query.endpoint) ? req.query.endpoint.join('/') : String(req.query.endpoint);
+  }
   
   // Build target URL
   let targetUrl = BACKEND_URL;
@@ -21,8 +32,8 @@ export default async function handler(req, res) {
   }
   
   // Append any query string from original request
-  if (req.url && req.url.includes('?')) {
-    const queryString = req.url.split('?')[1];
+  if (rawUrl.includes('?')) {
+    const queryString = rawUrl.split('?')[1];
     targetUrl += `?${queryString}`;
   }
 
