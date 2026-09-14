@@ -19,14 +19,14 @@
             --primary: #7a1f1f;
             --primary-dark: #5e1616;
             --accent: #a32d2d;
-            --danger: #ff4757;
-            --success: #2ed573;
-            --warning: #ffa502;
-            --text: #e8eef7;
-            --text-muted: #8896ab;
-            --border: #1e2a42;
+            --danger: #e64545;
+            --success: #22b573;
+            --warning: #d68a1f;
+            --text: #23222b;
+            --text-muted: #6f6e79;
+            --border: #e5e2ec;
             --radius: 12px;
-            --shadow: 0 8px 32px rgba(0, 212, 255, 0.08);
+            --shadow: 0 8px 28px rgba(122, 31, 31, 0.08);
         }
 
         body {
@@ -61,9 +61,10 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(10, 14, 26, 0.85);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(122,31,31,0.05);
             padding: 16px 24px;
             display: flex;
             justify-content: space-between;
@@ -111,7 +112,7 @@
 
         .btn-nav {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #000 !important;
+            color: #fff !important;
             padding: 10px 20px;
             border-radius: 8px;
             font-weight: 600;
@@ -147,10 +148,7 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
         }
 
         .hero p {
@@ -184,6 +182,67 @@
             margin-top: 4px;
         }
 
+
+        /* Dashboard-style hero (cloned card layout) */
+        .dash-wrap { max-width: 460px; margin: 0 auto; padding: 28px 20px 8px; }
+        .ring-card { display: flex; justify-content: center; margin-bottom: 24px; }
+        .ring {
+            width: 200px; height: 200px; border-radius: 50%;
+            background: var(--bg-card);
+            border: 10px solid #f3e4e4;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        .ring::before {
+            content: '';
+            position: absolute; inset: -10px;
+            border-radius: 50%;
+            border: 10px solid var(--primary);
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%);
+            opacity: 0.9;
+        }
+        .ring-label { font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .ring-number { font-size: 30px; font-weight: 800; color: var(--primary); margin: 4px 0 2px; }
+        .ring-sub { font-size: 12px; color: var(--text-muted); }
+        .dash-pills { display: flex; gap: 12px; margin-bottom: 28px; }
+        .pill-btn {
+            flex: 1; text-align: center; padding: 14px 8px;
+            border: 2px solid var(--primary); border-radius: 30px;
+            background: var(--bg-card); color: var(--primary);
+            font-weight: 700; font-size: 15px; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pill-btn.filled { background: var(--primary); color: #fff; }
+        .pill-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(122,31,31,0.18); }
+        .quick-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.8px; margin-bottom: 14px; }
+        .quick-grid { display: flex; justify-content: space-between; margin-bottom: 28px; }
+        .quick-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; background: none; border: none; }
+        .quick-icon {
+            width: 54px; height: 54px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .quick-icon.c1 { background: #fbe3e3; }
+        .quick-icon.c2 { background: #dcf5e8; }
+        .quick-icon.c3 { background: #e6e0f7; }
+        .quick-icon.c4 { background: #fdecd2; }
+        .quick-item span { font-size: 12px; color: var(--text); font-weight: 600; }
+        .dcard { background: var(--bg-card); border-radius: 16px; padding: 18px 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
+        .dcard-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.8px; margin-bottom: 14px; }
+        .dcard-stats { display: flex; justify-content: space-between; }
+        .dcard-stat { text-align: center; flex: 1; }
+        .dcard-stat b { display: block; font-size: 22px; font-weight: 800; color: var(--primary); }
+        .dcard-stat span { font-size: 11px; color: var(--text-muted); }
+        .dcard-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .dcard-row .amt { font-size: 24px; font-weight: 800; color: var(--primary); }
+        .dcard-row .n { font-size: 12px; color: var(--text-muted); }
+        .bars { display: flex; gap: 4px; align-items: flex-end; height: 28px; }
+        .bars span { flex: 1; background: #f0e2e2; border-radius: 3px; }
+        .bars span:last-child { background: var(--primary); }
+        .dcard-empty { text-align: center; padding: 10px 0; color: var(--text-muted); font-size: 13px; }
+
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -202,7 +261,7 @@
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #000;
+            color: #fff;
         }
 
         .btn-primary:hover {
@@ -212,13 +271,12 @@
 
         .btn-secondary {
             background: var(--bg-card);
-            color: var(--text);
-            border: 1px solid var(--border);
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--primary);
+            background: rgba(122,31,31,0.06);
         }
 
         .hero-buttons {
@@ -1173,7 +1231,7 @@
         .logo span span { color: #a32d2d !important; }
         .nav-links a { color: #5a5a5f !important; }
         .nav-links a:hover { color: #7a1f1f !important; }
-        .btn-nav { background: #7a1f1f !important; color: #fff !important; border-radius: 30px !important; }
+        .nav-links a.btn-nav { background: #7a1f1f !important; color: #fff !important; border-radius: 30px !important; }
 
         /* --- Hero --- */
         .hero { background: linear-gradient(180deg, #fcebeb 0%, #eceef5 100%) !important; }
@@ -1272,33 +1330,74 @@
 
     <!-- HOME PAGE -->
     <div class="page active" id="page-home">
-        <div class="hero">
+        <div class="hero" style="padding-bottom: 0;">
             <div class="hero-badge">🔒 Powered by Cyber Security Intelligence</div>
-            <h1>Report Scams. Track Justice.<br>Protect Ghana.</h1>
-            <p>Were you scammed? Don't stay silent. Report it here and watch our team investigate — filing formal complaints with the right authorities on your behalf. Every report matters.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="showPage('report')">
-                    📝 Report a Scam
-                </button>
-                <button class="btn btn-secondary" onclick="showPage('track')">
-                    🔍 Track My Case
-                </button>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Authorities Connected</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Monitoring</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Confidential</div>
+            <h1 style="font-size: 28px;">Report Scams. Track Justice.<br>Protect Ghana.</h1>
+            <p style="font-size: 15px; margin-bottom: 8px;">Were you scammed? Don't stay silent — report it and we'll file formal complaints with the right authorities on your behalf.</p>
+        </div>
+
+        <div class="dash-wrap">
+            <div class="ring-card">
+                <div class="ring">
+                    <div class="ring-label">Live Status</div>
+                    <div class="ring-number">24/7</div>
+                    <div class="ring-sub">Active Monitoring</div>
                 </div>
             </div>
-            <div class="ghana-accent" style="margin-top: 32px;"></div>
+
+            <div class="dash-pills">
+                <button class="pill-btn filled" onclick="showPage('report')">📝 Report a Scam</button>
+                <button class="pill-btn" onclick="showPage('track')">🔍 Track My Case</button>
+            </div>
+
+            <div class="quick-label">QUICK ACCESS</div>
+            <div class="quick-grid">
+                <button class="quick-item" onclick="showPage('report')">
+                    <div class="quick-icon c1">📝</div>
+                    <span>Report</span>
+                </button>
+                <button class="quick-item" onclick="showPage('track')">
+                    <div class="quick-icon c2">🔍</div>
+                    <span>Track</span>
+                </button>
+                <button class="quick-item" onclick="showHotlines()">
+                    <div class="quick-icon c3">📞</div>
+                    <span>Hotlines</span>
+                </button>
+                <a class="quick-item" href="https://securecheck-ui.vercel.app" target="_blank" rel="noopener" style="text-decoration:none;">
+                    <div class="quick-icon c4">🛡️</div>
+                    <span>SecureCheck</span>
+                </a>
+            </div>
+
+            <div class="dcard">
+                <div class="dcard-title">WHY SCAMWATCH GHANA</div>
+                <div class="dcard-stats">
+                    <div class="dcard-stat"><b>8+</b><span>Authorities</span></div>
+                    <div class="dcard-stat"><b>24/7</b><span>Monitoring</span></div>
+                    <div class="dcard-stat"><b>100%</b><span>Confidential</span></div>
+                </div>
+            </div>
+
+            <div class="dcard">
+                <div class="dcard-title">COMMUNITY ACTIVITY</div>
+                <div class="dcard-row">
+                    <div class="amt">Growing</div>
+                    <div class="n">reports this week</div>
+                </div>
+                <div class="bars">
+                    <span style="height:30%"></span><span style="height:45%"></span><span style="height:35%"></span>
+                    <span style="height:60%"></span><span style="height:50%"></span><span style="height:70%"></span>
+                    <span style="height:90%"></span>
+                </div>
+            </div>
+
+            <div class="dcard">
+                <div class="dcard-title">RECENT REPORTS</div>
+                <div class="dcard-empty">Track your report with your ID once submitted — status updates appear here.</div>
+            </div>
+
+            <div class="ghana-accent" style="margin: 8px 0 24px;"></div>
         </div>
 
         <div class="container">
