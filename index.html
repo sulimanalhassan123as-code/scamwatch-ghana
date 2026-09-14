@@ -6,16 +6,19 @@
     <meta name="description" content="ScamWatch Ghana — Report fraud and scams. Track investigations in real-time.">
     <title>ScamWatch Ghana — Report Fraud & Track Investigations</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg: #0a0e1a;
-            --bg-card: #121829;
-            --bg-card-hover: #1a2238;
-            --primary: #00d4ff;
-            --primary-dark: #0099cc;
-            --accent: #ffd700;
+            --bg: #eceef5;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8f8fc;
+            --primary: #7a1f1f;
+            --primary-dark: #5e1616;
+            --accent: #a32d2d;
             --danger: #ff4757;
             --success: #2ed573;
             --warning: #ffa502;
@@ -1152,6 +1155,101 @@
             .wizard-step-title { font-size: 18px; }
             .send-btn-whatsapp, .send-btn-email { font-size: 14px; padding: 14px 20px; }
         }
+
+        /* ================================================================
+           NEW DESIGN RESTYLE — light lavender & maroon (design clone)
+           Only visual overrides. All functional code untouched.
+           ================================================================ */
+        body { font-family: 'DM Sans', sans-serif !important; }
+        h1, h2, h3, .hero h1 { font-family: 'Sora', sans-serif !important; }
+        .section-title, .logo, .stat-number, .id, .tracking-id { font-family: 'Sora', sans-serif !important; }
+
+        .bg-animation { background: #eceef5 !important; }
+        ::selection { background: #f7c1c1; color: #7a1f1f; }
+
+        /* --- Nav --- */
+        nav { background: rgba(255,255,255,0.94) !important; border-bottom: 1px solid #f1e4e4 !important; }
+        .logo span { background: none !important; -webkit-background-clip: initial !important; background-clip: initial !important; -webkit-text-fill-color: initial !important; }
+        .logo span span { color: #a32d2d !important; }
+        .nav-links a { color: #5a5a5f !important; }
+        .nav-links a:hover { color: #7a1f1f !important; }
+        .btn-nav { background: #7a1f1f !important; color: #fff !important; border-radius: 30px !important; }
+
+        /* --- Hero --- */
+        .hero { background: linear-gradient(180deg, #fcebeb 0%, #eceef5 100%) !important; }
+        .hero-badge { background: #f7c1c1 !important; border: 1px solid #f7c1c1 !important; color: #a32d2d !important; }
+        .hero p { color: #5a5a5f; }
+        .hero-stats .stat-number { background: none !important; -webkit-background-clip: initial !important; -webkit-text-fill-color: initial !important; color: #7a1f1f !important; }
+        .hero-stats .stat-label { color: #8a8a94; }
+
+        /* --- Buttons: pill style --- */
+        .btn { border-radius: 30px !important; font-weight: 700 !important; }
+        .btn-primary { background: #7a1f1f !important; color: #fff !important; box-shadow: 0 4px 14px rgba(122,31,31,0.22); }
+        .btn-primary:hover { background: #5e1616 !important; color: #fff !important; transform: translateY(-1px); }
+        .btn-secondary { background: #fff !important; color: #7a1f1f !important; border: 2px solid #7a1f1f !important; }
+        .btn-secondary:hover { background: #fdeaea !important; color: #7a1f1f !important; transform: translateY(-1px); }
+        .btn-nav:hover { background: #5e1616 !important; }
+
+        /* --- Cards / sections --- */
+        .container, .form-card, .card, .agency-card, .report-preview, .type-card, .channel-card {
+            border-radius: 18px !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+        }
+        .section-title { color: #14151a; }
+
+        /* --- Inputs --- */
+        input, select, textarea { background: #fafafc !important; border: 1.5px solid #e3e0e0 !important; color: #14151a !important; border-radius: 12px !important; }
+        input::placeholder, textarea::placeholder { color: #b0b0b8 !important; }
+        input:focus, select:focus, textarea:focus { border-color: #7a1f1f !important; outline: none !important; }
+        label { color: #5a5a5f !important; }
+
+        /* --- Progress steps --- */
+        .progress-step.active .progress-circle, .progress-step.completed .progress-circle { color: #fff !important; }
+
+        /* --- Channel & send buttons --- */
+        .channel-btn { color: #fff !important; border-radius: 30px !important; }
+        .send-btn-whatsapp { background: #25D366 !important; color: #fff !important; border-radius: 30px !important; }
+        .send-btn-email { color: #14151a !important; border-radius: 30px !important; }
+        .evidence-preview .remove-btn { color: #fff !important; }
+
+        /* --- Status chips --- */
+        .status-submitted { background: rgba(122,31,31,0.08) !important; color: #7a1f1f !important; }
+
+        /* --- Hotline modal --- */
+        #hotlineModal div[style*="background"] { background: #fff !important; border-radius: 18px !important; }
+        .hotline-list li { border-bottom: 1px solid #f3f0f0 !important; }
+        .hotline-list .num { color: #7a1f1f !important; }
+
+        /* --- Side menu (new) --- */
+        .hamburger-btn { display: none; width: 42px; height: 42px; border-radius: 50%; border: none; background: #fdeaea; color: #7a1f1f; font-size: 19px; cursor: pointer; align-items: center; justify-content: center; }
+        .side-overlay { position: fixed; inset: 0; background: rgba(20,20,25,0.35); display: none; z-index: 9998; justify-content: flex-end; }
+        .side-overlay.open { display: flex; }
+        .side-panel { width: 290px; max-width: 85vw; background: #eceef5; height: 100%; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 14px; animation: sideIn 0.22s ease-out; }
+        @keyframes sideIn { from { transform: translateX(40px); opacity: 0.5; } to { transform: translateX(0); opacity: 1; } }
+        .side-profile { background: #fff; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .side-profile-left { display: flex; align-items: center; gap: 12px; }
+        .side-avatar { width: 42px; height: 42px; border-radius: 12px; background: #fdeaea; color: #7a1f1f; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+        .side-profile-info { display: flex; flex-direction: column; }
+        .side-name { font-weight: 700; font-size: 14px; color: #14151a; }
+        .side-sub { font-weight: 700; font-size: 13px; color: #7a1f1f; }
+        .side-close { width: 28px; height: 28px; border-radius: 50%; border: none; background: #f1f1f6; color: #666; cursor: pointer; }
+        .side-menu { background: #fff; border-radius: 18px; padding: 6px; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .side-item { display: flex; align-items: center; gap: 12px; padding: 13px 10px; border-radius: 12px; color: #2a2a2f; font-weight: 600; font-size: 14px; cursor: pointer; }
+        .side-item:hover { background: #fdeaea; color: #7a1f1f; }
+        .side-item-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+        .si-red { background: #fdeaea; } .si-purple { background: #edeafc; } .si-orange { background: #fdf1e3; }
+        .si-yellow { background: #fdf6d8; } .si-tan { background: #f3e9df; } .si-green { background: #e6f6ef; }
+        .side-label { font-size: 11px; font-weight: 700; color: #b0b0b8; letter-spacing: 0.5px; padding: 12px 12px 4px; }
+
+        /* WhatsApp fab */
+        .sw-fab { position: fixed; bottom: 22px; right: 22px; width: 52px; height: 52px; border-radius: 50%; background: #25D366; border: none; font-size: 21px; color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.2); cursor: pointer; z-index: 900; }
+
+        @media (max-width: 600px) {
+            .hamburger-btn { display: flex; }
+            .nav-links a:not(.hamburger-btn) { display: none; }
+            .nav-links { gap: 0; }
+            .sw-fab { bottom: 18px; right: 16px; }
+        }
     </style>
 </head>
 <body>
@@ -1168,6 +1266,7 @@
             <a href="#" onclick="showPage('track'); return false;">Track Case</a>
             <a href="https://securecheck-ui.vercel.app" target="_blank" rel="noopener" style="background:transparent;border:1px solid var(--border);color:var(--primary);padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">🛡️ SecureCheck</a>
             <a href="#" onclick="showPage('report'); return false;" class="btn-nav">Report Now</a>
+            <button class="hamburger-btn" onclick="toggleSideMenu()" aria-label="Open menu">☰</button>
         </div>
     </nav>
 
@@ -1566,6 +1665,34 @@
         <p style="margin-top: 8px;">Powered by Cyber Security Intelligence · Connected to CSA, EOCO, NCA, Police CID, GAF, MTN Fraud Team</p>
         <p style="margin-top: 8px;">Confidential & Secure · Your reports help protect all Ghanaians</p>
     </footer>
+
+
+    <!-- ===== SIDE MENU (new design) ===== -->
+    <div class="side-overlay" id="sideOverlay" onclick="if(event.target===this) toggleSideMenu()">
+        <div class="side-panel">
+            <div class="side-profile">
+                <div class="side-profile-left">
+                    <div class="side-avatar">🛡️</div>
+                    <div class="side-profile-info">
+                        <span class="side-name">ScamWatch Ghana</span>
+                        <span class="side-sub">Citizen Anti-Fraud Network</span>
+                    </div>
+                </div>
+                <button class="side-close" onclick="toggleSideMenu()">✕</button>
+            </div>
+            <nav class="side-menu">
+                <a class="side-item" onclick="sideGo('home')"><span class="side-item-icon si-red">🏠</span><span style="flex:1">Home</span><span style="color:#b5b5bd">›</span></a>
+                <a class="side-item" onclick="sideGo('report')"><span class="side-item-icon si-orange">🚨</span><span style="flex:1">Report a Scam</span><span style="color:#b5b5bd">›</span></a>
+                <a class="side-item" onclick="sideGo('track')"><span class="side-item-icon si-purple">🔍</span><span style="flex:1">Track Case</span><span style="color:#b5b5bd">›</span></a>
+                <a class="side-item" onclick="toggleSideMenu(); showHotlines();"><span class="side-item-icon si-yellow">📞</span><span style="flex:1">Fraud Hotlines</span><span style="color:#b5b5bd">›</span></a>
+                <div class="side-label">TOOLS</div>
+                <a class="side-item" href="https://securecheck-ui.vercel.app" target="_blank" rel="noopener" onclick="toggleSideMenu()"><span class="side-item-icon si-green">🛡️</span><span style="flex:1">SecureCheck</span><span style="color:#b5b5bd">›</span></a>
+                <a class="side-item" onclick="toggleSideMenu(); showPage('report'); alert('Tip: You can also report instantly via WhatsApp — choose the WhatsApp option on the report page.');"><span class="side-item-icon si-tan">💬</span><span style="flex:1">Report via WhatsApp</span><span style="color:#b5b5bd">›</span></a>
+            </nav>
+        </div>
+    </div>
+
+    <button class="sw-fab" onclick="showHotlines()" title="Fraud hotlines & WhatsApp report">💬</button>
 
     <script>
         // ===== SECURITY SHIELD v2.0 — ScamWatch Ghana =====
@@ -2363,6 +2490,15 @@
             document.getElementById('hotlineModal').style.display = 'flex';
         }
 
+
+        // ===== Side menu toggle (new design — additive only) =====
+        function toggleSideMenu() {
+            document.getElementById('sideOverlay').classList.toggle('open');
+        }
+        function sideGo(pageName) {
+            toggleSideMenu();
+            showPage(pageName);
+        }
     </script>
 </body>
 </html>
