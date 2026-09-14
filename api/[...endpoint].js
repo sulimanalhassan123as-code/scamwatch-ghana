@@ -2,7 +2,8 @@
 // Hides the real backend URL from client-side code
 // Any request to /api/* is proxied to the backend
 
-const BACKEND_URL = 'https://solas-39a02ff5.base44.app/functions';
+// Backend URL kept in Vercel env vars (BACKEND_URL) — never hardcoded in public code
+const BACKEND_URL = process.env.BACKEND_URL;
 
 export default async function handler(req, res) {
   // Only allow POST and GET
