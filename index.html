@@ -8,12 +8,14 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg: #eceef5;
+            --bg: #eef2f6;
+            --shadow-light: #ffffff;
+            --shadow-dark: #cad1dc;
             --bg-card: #ffffff;
             --bg-card-hover: #f8f8fc;
             --primary: #7a1f1f;
@@ -22,8 +24,9 @@
             --danger: #e64545;
             --success: #22b573;
             --warning: #d68a1f;
-            --text: #23222b;
-            --text-muted: #6f6e79;
+            --text: #2b3445;
+            --text-muted: #7d899b;
+            --primary-red: #a31d1d;
             --border: #e5e2ec;
             --radius: 12px;
             --shadow: 0 8px 28px rgba(122, 31, 31, 0.08);
@@ -183,65 +186,78 @@
         }
 
 
-        /* Dashboard-style hero (cloned card layout) */
-        .dash-wrap { max-width: 460px; margin: 0 auto; padding: 28px 20px 8px; }
-        .ring-card { display: flex; justify-content: center; margin-bottom: 24px; }
-        .ring {
-            width: 200px; height: 200px; border-radius: 50%;
-            background: var(--bg-card);
-            border: 10px solid #f3e4e4;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column;
-            box-shadow: var(--shadow);
-            position: relative;
+        /* ===== Neumorphic reusable effects (trained design) ===== */
+        .neu-flat {
+            background: var(--bg);
+            box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
         }
-        .ring::before {
-            content: '';
-            position: absolute; inset: -10px;
-            border-radius: 50%;
-            border: 10px solid var(--primary);
-            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%);
-            opacity: 0.9;
+        .neu-inset {
+            background: var(--bg);
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
         }
-        .ring-label { font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .ring-number { font-size: 30px; font-weight: 800; color: var(--primary); margin: 4px 0 2px; }
-        .ring-sub { font-size: 12px; color: var(--text-muted); }
-        .dash-pills { display: flex; gap: 12px; margin-bottom: 28px; }
-        .pill-btn {
-            flex: 1; text-align: center; padding: 14px 8px;
-            border: 2px solid var(--primary); border-radius: 30px;
-            background: var(--bg-card); color: var(--primary);
-            font-weight: 700; font-size: 15px; cursor: pointer;
-            transition: all 0.2s;
+        .neu-button {
+            background: var(--bg);
+            box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-        .pill-btn.filled { background: var(--primary); color: #fff; }
-        .pill-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(122,31,31,0.18); }
-        .quick-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.8px; margin-bottom: 14px; }
-        .quick-grid { display: flex; justify-content: space-between; margin-bottom: 28px; }
-        .quick-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; background: none; border: none; }
-        .quick-icon {
-            width: 54px; height: 54px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        .neu-button:active {
+            box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
         }
-        .quick-icon.c1 { background: #fbe3e3; }
-        .quick-icon.c2 { background: #dcf5e8; }
-        .quick-icon.c3 { background: #e6e0f7; }
-        .quick-icon.c4 { background: #fdecd2; }
-        .quick-item span { font-size: 12px; color: var(--text); font-weight: 600; }
-        .dcard { background: var(--bg-card); border-radius: 16px; padding: 18px 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
-        .dcard-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.8px; margin-bottom: 14px; }
-        .dcard-stats { display: flex; justify-content: space-between; }
-        .dcard-stat { text-align: center; flex: 1; }
-        .dcard-stat b { display: block; font-size: 22px; font-weight: 800; color: var(--primary); }
-        .dcard-stat span { font-size: 11px; color: var(--text-muted); }
-        .dcard-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-        .dcard-row .amt { font-size: 24px; font-weight: 800; color: var(--primary); }
-        .dcard-row .n { font-size: 12px; color: var(--text-muted); }
-        .bars { display: flex; gap: 4px; align-items: flex-end; height: 28px; }
-        .bars span { flex: 1; background: #f0e2e2; border-radius: 3px; }
-        .bars span:last-child { background: var(--primary); }
-        .dcard-empty { text-align: center; padding: 10px 0; color: var(--text-muted); font-size: 13px; }
+
+        /* Dashboard container (mobile-app style) */
+        .app-wrap { max-width: 420px; margin: 0 auto; padding: 10px 20px 8px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Wallet-style ring: raised outer + sunken inner */
+        .wallet-section { display: flex; justify-content: center; margin: 6px 0; }
+        .wallet-outer-ring { width: 200px; height: 200px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 12px; }
+        .wallet-inner-circle { width: 100%; height: 100%; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .wallet-label { font-size: 0.9rem; font-weight: 700; color: var(--primary-red); margin-bottom: 4px; }
+        .wallet-amount { font-size: 1.4rem; font-weight: 800; color: var(--text); }
+        .wallet-sub { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; }
+
+        /* Action bar: maroon pill with white buttons */
+        .action-bar { background: var(--primary-red); border-radius: 50px; padding: 6px; display: flex; gap: 6px; box-shadow: 0 10px 20px rgba(163, 29, 29, 0.25); }
+        .action-btn { flex: 1; padding: 14px 0; border-radius: 40px; font-size: 0.95rem; font-weight: 700; color: var(--primary-red); text-align: center; border: none; background: #ffffff; cursor: pointer; transition: transform 0.15s ease; }
+        .action-btn:active { transform: scale(0.97); }
+
+        /* Section titles */
+        .section-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; }
+
+        /* Quick access grid */
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .grid-item { display: flex; flex-direction: column; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; text-decoration: none; padding: 0; font-family: inherit; }
+        .grid-icon-box { width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+        .grid-label { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+        .icon-badge { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 15px; }
+        .bg-red { background: #e63946; }
+        .bg-green { background: #2a9d8f; }
+        .bg-purple { background: #6c5ce7; }
+        .bg-orange { background: #f4a261; }
+
+        /* Stats & activity cards */
+        .stats-card, .spend-card { padding: 18px; border-radius: 20px; }
+        .stats-grid { display: flex; justify-content: space-around; text-align: center; margin-top: 10px; }
+        .stats-grid .stat-number { font-size: 1.3rem; font-weight: 800; }
+        .stats-grid .stat-number.red { color: #e63946; }
+        .stats-grid .stat-number.green { color: #2a9d8f; }
+        .stats-grid .stat-number.orange { color: #f4a261; }
+        .stat-desc { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+        .spend-header { display: flex; justify-content: space-between; align-items: flex-end; }
+        .spend-amount { font-size: 1.3rem; font-weight: 800; color: var(--primary-red); margin-top: 4px; }
+        .spend-orders { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+        .progress-bar { height: 4px; width: 100%; border-radius: 10px; margin-top: 20px; position: relative; overflow: hidden;
+                        box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light); background: var(--bg); }
+        .progress-fill { width: 15%; height: 100%; background: var(--primary-red); border-radius: 10px; }
+
+        /* Floating WhatsApp-style button */
+        .sw-fab {
+            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
+            background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); cursor: pointer; border: none;
+            font-size: 24px; color: #fff; z-index: 900;
+        }
 
         /* Buttons */
         .btn {
@@ -1218,15 +1234,15 @@
            NEW DESIGN RESTYLE — light lavender & maroon (design clone)
            Only visual overrides. All functional code untouched.
            ================================================================ */
-        body { font-family: 'DM Sans', sans-serif !important; }
-        h1, h2, h3, .hero h1 { font-family: 'Sora', sans-serif !important; }
-        .section-title, .logo, .stat-number, .id, .tracking-id { font-family: 'Sora', sans-serif !important; }
+        body, h1, h2, h3, .hero h1, button, input, select, textarea { font-family: 'Plus Jakarta Sans', sans-serif !important; }
+        .section-title, .logo, .id, .tracking-id { font-family: 'Plus Jakarta Sans', sans-serif !important; }
 
-        .bg-animation { background: #eceef5 !important; }
+        .bg-animation { background: #eef2f6 !important; }
         ::selection { background: #f7c1c1; color: #7a1f1f; }
 
         /* --- Nav --- */
-        nav { background: rgba(255,255,255,0.94) !important; border-bottom: 1px solid #f1e4e4 !important; }
+        nav { background: var(--bg) !important; border: none !important; border-radius: 20px !important; margin-top: 12px !important;
+              box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light) !important; }
         .logo span { background: none !important; -webkit-background-clip: initial !important; background-clip: initial !important; -webkit-text-fill-color: initial !important; }
         .logo span span { color: #a32d2d !important; }
         .nav-links a { color: #5a5a5f !important; }
@@ -1234,8 +1250,9 @@
         .nav-links a.btn-nav { background: #7a1f1f !important; color: #fff !important; border-radius: 30px !important; }
 
         /* --- Hero --- */
-        .hero { background: linear-gradient(180deg, #fcebeb 0%, #eceef5 100%) !important; }
-        .hero-badge { background: #f7c1c1 !important; border: 1px solid #f7c1c1 !important; color: #a32d2d !important; }
+        .hero { background: none !important; }
+        .hero-badge { background: var(--bg) !important; border: none !important; color: var(--primary) !important;
+                       box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light) !important; }
         .hero p { color: #5a5a5f; }
         .hero-stats .stat-number { background: none !important; -webkit-background-clip: initial !important; -webkit-text-fill-color: initial !important; color: #7a1f1f !important; }
         .hero-stats .stat-label { color: #8a8a94; }
@@ -1300,7 +1317,6 @@
         .side-label { font-size: 11px; font-weight: 700; color: #b0b0b8; letter-spacing: 0.5px; padding: 12px 12px 4px; }
 
         /* WhatsApp fab */
-        .sw-fab { position: fixed; bottom: 22px; right: 22px; width: 52px; height: 52px; border-radius: 50%; background: #25D366; border: none; font-size: 21px; color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.2); cursor: pointer; z-index: 900; }
 
         @media (max-width: 600px) {
             .hamburger-btn { display: flex; }
@@ -1336,68 +1352,90 @@
             <p style="font-size: 15px; margin-bottom: 8px;">Were you scammed? Don't stay silent — report it and we'll file formal complaints with the right authorities on your behalf.</p>
         </div>
 
-        <div class="dash-wrap">
-            <div class="ring-card">
-                <div class="ring">
-                    <div class="ring-label">Live Status</div>
-                    <div class="ring-number">24/7</div>
-                    <div class="ring-sub">Active Monitoring</div>
+        <div class="app-wrap">
+
+            <!-- WALLET-STYLE STATUS RING -->
+            <section class="wallet-section">
+                <div class="wallet-outer-ring neu-flat">
+                    <div class="wallet-inner-circle neu-inset">
+                        <span class="wallet-label">Live Status</span>
+                        <span class="wallet-amount">24/7</span>
+                        <span class="wallet-sub">Active Monitoring</span>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="dash-pills">
-                <button class="pill-btn filled" onclick="showPage('report')">📝 Report a Scam</button>
-                <button class="pill-btn" onclick="showPage('track')">🔍 Track My Case</button>
-            </div>
+            <!-- ACTION BAR -->
+            <section class="action-bar">
+                <button class="action-btn" onclick="showPage('report')">📝 Report a Scam</button>
+                <button class="action-btn" onclick="showPage('track')">🔍 Track My Case</button>
+            </section>
 
-            <div class="quick-label">QUICK ACCESS</div>
-            <div class="quick-grid">
-                <button class="quick-item" onclick="showPage('report')">
-                    <div class="quick-icon c1">📝</div>
-                    <span>Report</span>
-                </button>
-                <button class="quick-item" onclick="showPage('track')">
-                    <div class="quick-icon c2">🔍</div>
-                    <span>Track</span>
-                </button>
-                <button class="quick-item" onclick="showHotlines()">
-                    <div class="quick-icon c3">📞</div>
-                    <span>Hotlines</span>
-                </button>
-                <a class="quick-item" href="https://securecheck-ui.vercel.app" target="_blank" rel="noopener" style="text-decoration:none;">
-                    <div class="quick-icon c4">🛡️</div>
-                    <span>SecureCheck</span>
-                </a>
-            </div>
-
-            <div class="dcard">
-                <div class="dcard-title">WHY SCAMWATCH GHANA</div>
-                <div class="dcard-stats">
-                    <div class="dcard-stat"><b>8+</b><span>Authorities</span></div>
-                    <div class="dcard-stat"><b>24/7</b><span>Monitoring</span></div>
-                    <div class="dcard-stat"><b>100%</b><span>Confidential</span></div>
+            <!-- QUICK ACCESS GRID -->
+            <section>
+                <div class="section-title">Quick Access</div>
+                <div class="grid-4">
+                    <button class="grid-item" onclick="showPage('report')">
+                        <div class="grid-icon-box neu-button"><div class="icon-badge bg-red">📝</div></div>
+                        <span class="grid-label">Report</span>
+                    </button>
+                    <button class="grid-item" onclick="showPage('track')">
+                        <div class="grid-icon-box neu-button"><div class="icon-badge bg-green">🔍</div></div>
+                        <span class="grid-label">Track</span>
+                    </button>
+                    <button class="grid-item" onclick="showHotlines()">
+                        <div class="grid-icon-box neu-button"><div class="icon-badge bg-purple">📞</div></div>
+                        <span class="grid-label">Hotlines</span>
+                    </button>
+                    <a class="grid-item" href="https://securecheck-ui.vercel.app" target="_blank" rel="noopener">
+                        <div class="grid-icon-box neu-button"><div class="icon-badge bg-orange">🛡️</div></div>
+                        <span class="grid-label">SecureCheck</span>
+                    </a>
                 </div>
-            </div>
+            </section>
 
-            <div class="dcard">
-                <div class="dcard-title">COMMUNITY ACTIVITY</div>
-                <div class="dcard-row">
-                    <div class="amt">Growing</div>
-                    <div class="n">reports this week</div>
+            <!-- WHY SCAMWATCH GHANA -->
+            <section class="stats-card neu-flat">
+                <div class="section-title">Why ScamWatch Ghana</div>
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number red">8+</div>
+                        <div class="stat-desc">Authorities</div>
+                    </div>
+                    <div>
+                        <div class="stat-number green">24/7</div>
+                        <div class="stat-desc">Monitoring</div>
+                    </div>
+                    <div>
+                        <div class="stat-number orange">100%</div>
+                        <div class="stat-desc">Confidential</div>
+                    </div>
                 </div>
-                <div class="bars">
-                    <span style="height:30%"></span><span style="height:45%"></span><span style="height:35%"></span>
-                    <span style="height:60%"></span><span style="height:50%"></span><span style="height:70%"></span>
-                    <span style="height:90%"></span>
+            </section>
+
+            <!-- COMMUNITY ACTIVITY -->
+            <section class="spend-card neu-flat">
+                <div class="spend-header">
+                    <div>
+                        <div class="section-title" style="margin-bottom: 2px;">Community Activity</div>
+                        <div class="spend-amount">Growing</div>
+                    </div>
+                    <div class="spend-orders">reports this week</div>
                 </div>
-            </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </section>
 
-            <div class="dcard">
-                <div class="dcard-title">RECENT REPORTS</div>
-                <div class="dcard-empty">Track your report with your ID once submitted — status updates appear here.</div>
-            </div>
+            <!-- RECENT REPORTS -->
+            <section class="stats-card neu-flat">
+                <div class="section-title">Recent Reports</div>
+                <div style="text-align: center; padding: 8px 0; color: var(--text-muted); font-size: 13px; font-weight: 600;">
+                    Track your report with your ID once submitted — status updates appear here.
+                </div>
+            </section>
 
-            <div class="ghana-accent" style="margin: 8px 0 24px;"></div>
+            <div class="ghana-accent" style="margin: 4px 0 12px;"></div>
         </div>
 
         <div class="container">
